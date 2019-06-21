@@ -11,13 +11,14 @@ public class Calculate {
 	*@param args - args.
 	*/
 	public static void main(String[] args) {
-		System.out.println("Hello World!"); }
+		System.out.println("Hello World!");
+		System.out.println(echo("bla bla bla"));}
 	
 	/**
 	*Method Echo
 	*@param name - Your name
 	*@return Echo plus your name
 	*/
-	public String echo(String name) {
-		return "Echo, echo, echo : " + name; }  
+	public static String echo(String name) {
+		return "Echo, echo, echo : " + name; }
 }
