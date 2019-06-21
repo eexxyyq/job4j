@@ -5,14 +5,13 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
-*CalculateTest
+*CalculateTest.
 *
 *@author Tikhonov Yaroslav (eexxyyq@yandex.ru)
 */
-public class CalculateTest
-{
+public class CalculateTest {
 	/**
-	*Test Echo
+	*Test Echo.
 	*/
 
 	@Test
