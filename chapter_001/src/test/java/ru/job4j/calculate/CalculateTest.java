@@ -5,14 +5,14 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
-*CalculateTest.
-*
-*@author Tikhonov Yaroslav (eexxyyq@yandex.ru)
-*/
+ *CalculateTest.
+ *
+ *@author Tikhonov Yaroslav (eexxyyq@yandex.ru)
+ */
 public class CalculateTest {
 	/**
-	*Test Echo.
-	*/
+	 *Test Echo.
+	 */
 
 	@Test
 	public void whenTakeNameThenThreeEchoPlusName() {
@@ -22,5 +22,5 @@ public class CalculateTest {
 		String result = calc.echo(input);
 		assertThat(result, is(except));
 	}
-	
+
 }
