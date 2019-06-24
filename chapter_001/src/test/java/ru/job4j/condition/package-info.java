@@ -1,4 +1,4 @@
 /**
- * Вычисляем расстояние между точками ТЕСТ.
+ * Math operations ТЕСТ.
  */
 package ru.job4j.condition;
