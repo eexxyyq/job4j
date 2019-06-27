@@ -13,11 +13,11 @@ public class Check {
         boolean chk = false;
         boolean tmp = array[0];
         for (int i = 1; i < array.length; i++) {
-            if (array[i] == tmp) {
-                chk = true;
-            } else {
+            if (array[i] != tmp) {
                 chk = false;
                 break;
+            } else {
+                chk = true;
             }
         }
         return chk;
