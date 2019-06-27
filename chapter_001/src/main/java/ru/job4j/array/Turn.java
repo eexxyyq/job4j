@@ -1,7 +1,5 @@
 package ru.job4j.array;
 
-import java.util.Arrays;
-
 /**
  * Переворот массива
  * @author Tikhonov Yaroslav (eexxyyq@yandex.ru)
