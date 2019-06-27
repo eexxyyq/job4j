@@ -18,6 +18,7 @@ public class ArrayChar {
         for (int i = 0; i < pref.length; i++) {
             if (pref[i] != wrd [i]) {
                 result = false;
+                break;
             }
         }
         return result;
