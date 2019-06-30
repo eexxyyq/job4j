@@ -7,8 +7,8 @@ package ru.job4j.calculator;
 public class Calculator {
     /**
      * Method add.
-     * @param first
-     * @param second
+     * @param first first value
+     * @param second second value
      * @return first + second.
      */
     public double add(double first, double second) {
@@ -17,8 +17,8 @@ public class Calculator {
 
     /**
      * Method div.
-     * @param first
-     * @param second
+     * @param first first value
+     * @param second second value
      * @return first / second
      */
     public double div(double first, double second) {
@@ -27,8 +27,8 @@ public class Calculator {
 
     /**
      * Method substact.
-     * @param first
-     * @param second
+     * @param first first value
+     * @param second second value
      * @return first - second
      */
     public double substract(double first, double second) {
@@ -37,8 +37,8 @@ public class Calculator {
 
     /**
      * Method multiplie.
-     * @param first
-     * @param second
+     * @param first first value
+     * @param second second value
      * @return first * second
      */
     public double multiple(double first, double second) {

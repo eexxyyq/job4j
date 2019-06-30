@@ -5,8 +5,8 @@ package ru.job4j.converter;
  * @author Tikhonov Yaroslav (eexxyyq@yandex.ru)
  */
 public class Converter {
-    public static final double EURO_COURSE = 70;
-    public static final double USD_COURSE = 60;
+    static final double EURO_COURSE = 70;
+    static final double USD_COURSE = 60;
     /**
      * Конвертируем рубли в Евро.
      * @param value рубли

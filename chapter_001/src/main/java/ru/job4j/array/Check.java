@@ -10,17 +10,17 @@ public class Check {
      * @return true/false
      */
     public boolean check(boolean[] array) {
-        boolean chk = false;
+        boolean result = false;
         boolean tmp = array[0];
         for (int i = 1; i < array.length; i++) {
             if (array[i] != tmp) {
-                chk = false;
+                result = false;
                 break;
             } else {
-                chk = true;
+                result = true;
             }
         }
-        return chk;
+        return result;
     }
     /**
      * Решение через сравнение соседних элементов

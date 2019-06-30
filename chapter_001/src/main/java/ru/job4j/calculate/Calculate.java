@@ -13,7 +13,6 @@ public class Calculate {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 		System.out.println(echo("bla bla bla")); }
-
 	/**
 	 *Method Echo
 	 *@param name - Your name

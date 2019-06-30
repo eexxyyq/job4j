@@ -6,9 +6,9 @@ package ru.job4j.calculator;
  * @author Tikhonov Yaroslav (eexxyyq@yandex.ru)
  */
 public class Fit {
-    public static final double CONST = 1.15;
-    public static final double MEN_DIF = 100;
-    public static final double WOMAN_DIF = 110;
+    static final double CONST = 1.15;
+    static final double MEN_DIF = 100;
+    static final double WOMAN_DIF = 110;
 
     /**
      * Расчет идельного веса для мужчин

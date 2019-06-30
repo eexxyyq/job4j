@@ -17,6 +17,5 @@ public class SqArea {
         int h = (int) Math.sqrt(p / (2 * k));
         int w = h * k;
         return h * w;
-
     }
 }
