@@ -41,7 +41,7 @@ public class MaxTest {
     @Test
     public void whenMax7To2To3Then7() {
         Max max = new Max();
-        int result = max.max(7, 2, 3);
+        int result = max.max(7, 2, 1);
         assertThat(result, is(7));
     }
 

@@ -18,13 +18,17 @@ public class PointTest {
         second.info();
         System.out.println(String.format("Result is %s", result));
         assertThat(result, is(10D));
+        System.out.println(" ");
     }
 
     @Test
     public void whenCheckItself() {
         Point point = new Point(0, 0);
         double result = point.distance(point);
+        point.info();
+        System.out.println(String.format("Result is %s", result));
         assertThat(result, is(0D));
+        System.out.println(" ");
     }
 
     @Test
@@ -33,5 +37,18 @@ public class PointTest {
         first.info();
         Point second = new Point(2, 2);
         second.info();
+        System.out.println(" ");
+    }
+
+    @Test
+    public void whenZeroAndZeroAnd10Then10() {
+        Point first = new Point(0, 0, 0);
+        Point second = new Point(0, 0, 10);
+        double result = first.distance3d(second);
+        first.info3d();
+        second.info3d();
+        System.out.println(String.format("Result is %s", result));
+        assertThat(result, is(10D));
+        System.out.println(" ");
     }
 }
