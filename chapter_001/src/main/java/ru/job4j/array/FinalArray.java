@@ -7,32 +7,37 @@ package ru.job4j.array;
  */
 public class FinalArray {
     /**
-     * Метод принимает два отсортированных массива и делает их слияние в третий.
+     *  Метод принимает два отсортированных массива и делает их слияние в третий.
+     *
+     *  Пока в итоговом массиве есть свободные ячейки мы смотрим:
+     *
+     *  Если во втором массиве не осталось элементов, то в последнюю свободную ячейку итогового массива
+     * записывается элемент первого массива.
+     *
+     *  Если в первом массиве не осталось элементов, то в последнюю свободную ячейку итогового массива
+     * записывается элемент второго массива.
+     *
+     *  Если в обоих массивах есть элементы, то в последнюю свободную ячейку итогового массива
+     * записывается больший элемент из сравниваемых.
+     *
+     *  После каждой итерации декрементируется номер сравниваемой ячейки того массива, чей элемент
+     * оказался больше в этой итерации, а также номер последней свободной ячейки итогового массива .
+     *
      * @param first массив
      * @param second массив
      * @return отсортированный массив
      */
-    public int[] sortedArray(int[] first, int[] second) {
-        int[] sorted = new int[first.length + second.length];
-        int elSorted = 0;
-        int elFirst = 0;
-        int elSecond = 0;
-        while (elSorted < sorted.length - 1) {
-            if (first[elFirst] <= second[elSecond]) {
-                sorted[elSorted] = first[elFirst];
-                if (elFirst < first.length - 1) {
-                    elFirst++;
-                }
-                elSorted++;
-            } else {
-                sorted[elSorted] = second[elSecond];
-                if (elSecond < second.length - 1) {
-                    elSecond++;
-                }
-                elSorted++;
-            }
+
+    public static int[] merge(int[] first, int[] second) {
+        int[] result = new int[first.length + second.length];
+        int i = first.length - 1;
+        int j = second.length - 1;
+        int k = result.length - 1;
+
+        while (k >= 0) {
+            result[k--] = (j < 0 || (i >= 0 && first[i] >= second[j])) ? first[i--] : second[j--];
         }
-        sorted[sorted.length - 1] = first[first.length - 1] > second[second.length - 1] ? first[first.length - 1] : second[second.length - 1];
-        return sorted;
+
+        return result;
     }
 }
