@@ -10,7 +10,6 @@ public class Item {
 
     public Item(String name, String description, long time) {
         this.name = name;
-        this.id = id;
         this.description = description;
         this.time = time;
     }
@@ -25,6 +24,11 @@ public class Item {
 
     public String getId() {
         return id;
+    }
+
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public void setId(String id) {

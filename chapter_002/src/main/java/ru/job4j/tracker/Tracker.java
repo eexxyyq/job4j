@@ -33,6 +33,7 @@ public class Tracker {
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 items[i] = item;
+                items[i].setId(id);
                 result = true;
                 break;
             }
@@ -68,6 +69,8 @@ public class Tracker {
                 }
             }
         }
-        return Arrays.copyOf(tmp, count);
+        Item[] result = Arrays.copyOf(tmp, count);
+
+        return result.length == 0 ? null : result;
     }
 }
