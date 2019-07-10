@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
@@ -26,4 +27,15 @@ public class StartUITest {
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
+
+    @Test
+    public void whenDeleteThenTrackerHasDeletedValue() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Test name", "desc"));
+        Input input = new StubInput(new String[] {"3", item.getId(), "6"});
+        new StartUI(input, tracker).init();
+        assertThat(tracker.findById(item.getId()), is(nullValue()));
+    }
+
+
 }
