@@ -107,8 +107,7 @@ public class StartUI {
     private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки: ");
-        if (!(this.tracker.findById(id) == null)) {
-            this.tracker.delete(id);
+        if (this.tracker.delete(id)) {
             System.out.println("\n"
                     + "-----------------[ Заявка с Id : " + id + " удалена ]---------------------\n"
                     + "--------------------------------------------------------------------------\n\n");
@@ -123,12 +122,14 @@ public class StartUI {
     private void findId() {
         System.out.println("------------ Поиск заявки по id --------------");
         String id = this.input.ask("Введите id заявки: ");
-        if (!(this.tracker.findById(id) == null)) {
-            Item item = this.tracker.findById(id);
+        Item item = this.tracker.findById(id);
+        if (item != null) {
             System.out.println("----------------------------------------------\n"
                     + "name         |   description        |        id\n"
                     + "-------------------------------------------------------\n"
-                    + item.getName() + "          | " + item.getDescription() + "                  | " + item.getId() + "\n"
+                    + item.getName() + "          | "
+                    + item.getDescription() + "                  | "
+                    + item.getId() + "\n"
                     + "-------------------------------------------------------------\n\n");
         } else {
             System.out.println("\n"
@@ -141,13 +142,15 @@ public class StartUI {
     private void findName() {
         System.out.println("------------ Поиск заявки по имени --------------");
         String name = this.input.ask("Введите имя заявки: ");
-        if (!(this.tracker.findByName(name) == null)) {
-            Item[] items = this.tracker.findByName(name);
+        Item[] items = this.tracker.findByName(name);
+        if (items != null) {
             System.out.println("----------------------------------------------\n"
                     + "name         |  description            |    id\n"
                     + "----------------------------------------------");
             for (Item item : items) {
-                System.out.println(item.getName() + "          | " + item.getDescription() + "                  | " + item.getId());
+                System.out.println(item.getName() + "          | "
+                        + item.getDescription() + "                  | "
+                        + item.getId());
             }
             System.out.println("----------------------------------------------\n");
         } else {
