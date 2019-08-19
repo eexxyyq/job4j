@@ -8,13 +8,15 @@ public class ShowAllItems implements UserAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        private int count = 1;
+        int count = 1;
         System.out.println("------------ List of the Items --------------");
         Item[] items = tracker.findAll();
         for (Item item : items) {
-            System.out.println("Item " + count + ". \n" +
-                    "Name: " + item.getName() +". \n" +
-                    "Description: " + item.getDescription() + ". \n");
+            System.out.println("Item " + count + ". \n"
+                    + "Id: " + item.getId() + ". \n"
+                    + "Name: " + item.getName() + ". \n"
+                    + "Description: " + item.getDescription() + ". \n");
+            count++;
         }
     }
 
