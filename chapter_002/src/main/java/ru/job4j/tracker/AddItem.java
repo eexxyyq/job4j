@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 public class AddItem implements UserAction {
-
     @Override
     public int key() {
         return 0;
@@ -21,6 +20,6 @@ public class AddItem implements UserAction {
 
     @Override
     public String info() {
-        return "Add new Item.";
+        return "0. Add new Item.";
     }
 }

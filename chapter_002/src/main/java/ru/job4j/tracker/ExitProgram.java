@@ -13,6 +13,6 @@ public class ExitProgram implements UserAction {
 
     @Override
     public String info() {
-        return null;
+        return "6. Exit program";
     }
 }
