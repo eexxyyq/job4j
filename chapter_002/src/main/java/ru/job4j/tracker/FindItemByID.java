@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-public class FindItemByID implements UserAction{
+public class FindItemByID implements UserAction {
     @Override
     public int key() {
         return 4;
