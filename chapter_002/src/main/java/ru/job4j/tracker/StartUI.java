@@ -13,36 +13,12 @@ public class StartUI {
     }
 
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            int answer = Integer.parseInt(this.input.ask("Enter the menu item: "));
-            switch (answer) {
-                case (ADD):
-                    this.createItem();
-                    break;
-                case (EXIT):
-                    exit = true;
-                    break;
-                case (1):
-                    this.showAll();
-                    break;
-                case (2):
-                    this.editItem();
-                    break;
-                case (3):
-                    this.deleteItem();
-                    break;
-                case (4):
-                    this.findId();
-                    break;
-                case (5):
-                    this.findName();
-                    break;
-                default:
-                    System.out.println("\n  Wrong choice \n");
-            }
-        }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.parseInt(input.ask("select: ")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     public static void main(String[] args) {

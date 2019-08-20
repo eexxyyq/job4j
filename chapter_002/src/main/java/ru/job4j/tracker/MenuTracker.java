@@ -26,4 +26,16 @@ public class MenuTracker {
         this.actions.add(new FindItemByName(5, "Find items by name"));
         this.actions.add(new ExitProgram(6, "Exit Program"));
     }
+
+    public void select(int key) {
+        this.actions.get(key).execute(this.input, this.tracker);
+    }
+
+    public void show() {
+        for (UserAction action : this.actions) {
+            if (action != null) {
+                System.out.println(action.info());
+            }
+        }
+    }
 }
