@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 
 public class StartUI {
-    private static final String ADD = "0";
-    private static final String EXIT = "6";
+    public static final int ADD = 0;
+    public static final int EXIT = 6;
     private final Input input;
     private Tracker tracker;
 
@@ -13,36 +13,12 @@ public class StartUI {
     }
 
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Enter the menu item: ");
-            switch (answer) {
-                case (ADD):
-                    this.createItem();
-                    break;
-                case (EXIT):
-                    exit = true;
-                    break;
-                case ("1"):
-                    this.showAll();
-                    break;
-                case ("2"):
-                    this.editItem();
-                    break;
-                case ("3"):
-                    this.deleteItem();
-                    break;
-                case ("4"):
-                    this.findId();
-                    break;
-                case ("5"):
-                    this.findName();
-                    break;
-                default:
-                    System.out.println("\n  Wrong choice \n");
-            }
-        }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.parseInt(input.ask("select: ")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     public static void main(String[] args) {
@@ -66,10 +42,9 @@ public class StartUI {
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
         this.tracker.add(item);
-        System.out.println("\n"
-                + "-------------------------------------------------------------\n"
-                + "-----------[ Новая заявка с Id : " + item.getId() + " ]-------------\n"
-                + "-------------------------------------------------------------\n\n");
+        System.out.println("------------ New Item with Id : " + item.getId());
+        System.out.println("------------ New Item with Name : " + item.getName());
+        System.out.println("------------ New Item with Description : " + item.getDescription());
     }
 
     private void showAll() {

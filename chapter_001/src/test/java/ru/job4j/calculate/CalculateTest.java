@@ -3,6 +3,7 @@ package ru.job4j.calculate;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static ru.job4j.calculate.Calculate.echo;
 
 /**
  *CalculateTest.
@@ -19,7 +20,7 @@ public class CalculateTest {
 		String input = "Tikhonov Yaroslav";
 		String except = "Echo, echo, echo : Tikhonov Yaroslav";
 		Calculate calc = new Calculate();
-		String result = calc.echo(input);
+		String result = echo(input);
 		assertThat(result, is(except));
 	}
 }
