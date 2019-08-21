@@ -11,13 +11,13 @@ public class Tracker {
         return String.valueOf(RN.nextInt() + System.currentTimeMillis());
     }
 
-    public Item add(Item item) {
+    Item add(Item item) {
         item.setId(this.generateId());
         this.items[position++] = item;
         return item;
     }
 
-    public Item findById(String id) {
+    Item findById(String id) {
         Item result = null;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
@@ -28,20 +28,17 @@ public class Tracker {
         return result;
     }
 
-    public boolean replace(String id, Item item) {
-        boolean result = false;
+    void replace(String id, Item item) {
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 items[i] = item;
                 items[i].setId(id);
-                result = true;
                 break;
             }
         }
-        return result;
     }
 
-    public boolean delete(String id) {
+    boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
@@ -55,11 +52,11 @@ public class Tracker {
         return result;
     }
 
-    public Item[] findAll() {
+    Item[] findAll() {
         return Arrays.copyOf(this.items, this.position);
     }
 
-    public Item[] findByName(String key) {
+    Item[] findByName(String key) {
         Item[] tmp = new Item[position];
         int count = 0;
         for (int i = 0; i < position; i++) {

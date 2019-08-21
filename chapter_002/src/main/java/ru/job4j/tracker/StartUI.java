@@ -2,10 +2,13 @@ package ru.job4j.tracker;
 
 
 public class StartUI {
-    public static final int ADD = 0;
-    public static final int EXIT = 6;
     private final Input input;
     private Tracker tracker;
+    private boolean isExit = false;
+
+    void setExit() {
+        this.isExit = true;
+    }
 
     StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -13,12 +16,19 @@ public class StartUI {
     }
 
     void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
+        menu.fillActions(this);
         do {
             menu.show();
-            menu.select(Integer.parseInt(input.ask("select: ")));
-        } while (!"y".equals(this.input.ask("Exit?(y/n): ")));
+            int s = Integer.parseInt(input.ask("select: "));
+            if (s != 6) {
+                menu.select(s);
+            } else {
+                setExit();
+                break;
+            }
+            menu.stop(input.ask("exit? (y) "));
+        } while (!isExit);
     }
 
     public static void main(String[] args) {
