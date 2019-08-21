@@ -71,7 +71,65 @@ public class StartUITest {
         ));
     }
 
-
+    @Test
+    public void whenUserWantToFindIemById() {
+        Tracker tracker = new Tracker();
+        Item item1 = tracker.add(new Item("name1", "desc1"));
+        Input input = new StubInput(new String[]{"4", item1.getId(), "y"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()), is(
+                new StringBuilder()
+                        .append(menu.toString())
+                        .append(System.lineSeparator())
+                        .append("------------ Find Item by Id --------------")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(item1.getId())
+                        .append(". ")
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append(item1.getName())
+                        .append(". ")
+                        .append(System.lineSeparator())
+                        .append("Description: ")
+                        .append(item1.getDescription())
+                        .append(". ")
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator())
+                        .toString()
+        ));
+    }
+    @Test
+    public void whenUserWantToFindIemByIName() {
+        Tracker tracker = new Tracker();
+        Item item1 = tracker.add(new Item("name1", "desc1"));
+        Input input = new StubInput(new String[]{"5", item1.getName(), "y"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()), is(
+                new StringBuilder()
+                        .append(menu.toString())
+                        .append(System.lineSeparator())
+                        .append("------------ Find item by name --------------")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(item1.getId())
+                        .append(". ")
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append(item1.getName())
+                        .append(". ")
+                        .append(System.lineSeparator())
+                        .append("Description: ")
+                        .append(item1.getDescription())
+                        .append(". ")
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator())
+                        .append("----------------------------------------------")
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator())
+                        .toString()
+        ));
+    }
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
