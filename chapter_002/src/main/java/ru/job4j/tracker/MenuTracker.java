@@ -14,7 +14,9 @@ class MenuTracker {
         this.tracker = tracker;
         this.uui = uui;
     }
-
+    public int getActionsLength() {
+        return this.actions.size();
+    }
 
     void fillActions(StartUI ui) {
         this.actions.add(new AddItem());
