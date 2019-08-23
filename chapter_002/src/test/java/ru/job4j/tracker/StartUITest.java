@@ -26,19 +26,19 @@ public class StartUITest {
     }
 
     private final StringBuilder menu = new StringBuilder()
-            .append("0. Add new Item.")
+            .append("0. Add new item.")
             .append(System.lineSeparator())
-            .append("1. Show all of the Items.")
+            .append("1. Show all of the items.")
             .append(System.lineSeparator())
             .append("2. Edit item.")
             .append(System.lineSeparator())
-            .append("3. Delete item")
+            .append("3. Delete item.")
             .append(System.lineSeparator())
-            .append("4. Find Item by Id")
+            .append("4. Find item by id.")
             .append(System.lineSeparator())
             .append("5. Find item by name.")
             .append(System.lineSeparator())
-            .append("6. Exit program");
+            .append("6. Exit program.");
 
     @Test
     public void whenUserWantToSeeAllOfTheItems() {

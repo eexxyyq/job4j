@@ -33,7 +33,7 @@ public class ValidateInputTest {
         assertThat(
                 this.mem.toString(),
                 is(
-                        "Please, enter a validate data. \r\n"
+                        "Please, enter a validate data. " + System.lineSeparator()
                 )
         );
     }

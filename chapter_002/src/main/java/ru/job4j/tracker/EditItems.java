@@ -1,9 +1,8 @@
 package ru.job4j.tracker;
 
-public class EditItems implements UserAction {
-    @Override
-    public int key() {
-        return 2;
+public class EditItems extends BaseAction {
+    EditItems(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -24,10 +23,5 @@ public class EditItems implements UserAction {
                                 + " ----------------[ Wrong id ]------------------ "
                                 + System.lineSeparator());
         }
-    }
-
-    @Override
-    public String info() {
-        return "2. Edit item.";
     }
 }
