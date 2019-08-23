@@ -16,10 +16,13 @@ public class EditItems implements UserAction {
             String newDesc = input.ask("Please, provide new item's description: ");
             Item item = new Item(newName, newDesc);
             tracker.replace(id, item);
-            System.out.println("\n"
-                    + "-----------[ Item with Id : " + old.getId() + " has been changed ]--------\n");
+            System.out.println(System.lineSeparator()
+                                + "-----------[ Item with Id : " + old.getId() + " has been changed ]--------"
+                                + System.lineSeparator());
         } else {
-            System.out.println("\n ----------------[ Wrong id ]------------------ \n");
+            System.out.println(System.lineSeparator()
+                                + " ----------------[ Wrong id ]------------------ "
+                                + System.lineSeparator());
         }
     }
 

@@ -11,10 +11,12 @@ public class DeleteItem implements UserAction {
         System.out.println("------------ Delete item --------------");
         String id = input.ask("Please, provide item's id: ");
         if (tracker.delete(id)) {
-            System.out.println("\n"
-                    + "-----------------[ Item with Id : " + id + " has been deleted ]----------------\n");
+            System.out.println(System.lineSeparator()
+                    + "-----------------[ Item with Id : " + id + " has been deleted ]----------------" + System.lineSeparator());
         }  else {
-            System.out.println("\n ----------------[ Wrong id ]------------------ \n");
+            System.out.println(System.lineSeparator()
+                    + " ----------------[ Wrong id ]------------------ "
+            + System.lineSeparator());
         }
     }
 

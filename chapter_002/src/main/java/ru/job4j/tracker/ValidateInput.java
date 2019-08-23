@@ -6,7 +6,7 @@ public class ValidateInput implements Input {
     ValidateInput(Input input) {
         this.input = input;
     }
-    public String ask (String question) {
+    public String ask(String question) {
         return this.input.ask(question);
     }
     public int ask(String question, int[] range) {

@@ -13,14 +13,15 @@ public class FindItemByName implements UserAction {
         Item[] items = tracker.findByName(name);
         if (items != null) {
             for (Item item : items) {
-                System.out.println("Id: " + item.getId() + ". \n"
-                        + "Name: " + item.getName() + ". \n"
-                        + "Description: " + item.getDescription() + ". \n");
-                System.out.println("----------------------------------------------\n");
+                System.out.println("Id: " + item.getId() + ". " + System.lineSeparator()
+                        + "Name: " + item.getName() + ". " + System.lineSeparator()
+                        + "Description: " + item.getDescription() + ". " + System.lineSeparator());
+                System.out.println("----------------------------------------------" + System.lineSeparator());
             }
         } else {
-            System.out.println("\n"
-                    + "----------------[ Wrong name ]------------------\n");
+            System.out.println(System.lineSeparator()
+                                + "----------------[ Wrong name ]------------------"
+                                + System.lineSeparator());
         }
     }
 

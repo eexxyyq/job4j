@@ -12,10 +12,10 @@ public class ShowAllItems implements UserAction {
         System.out.println("------------ List of the Items --------------");
         Item[] items = tracker.findAll();
         for (Item item : items) {
-            System.out.println("Item " + count + ". \n"
-                    + "Id: " + item.getId() + ". \n"
-                    + "Name: " + item.getName() + ". \n"
-                    + "Description: " + item.getDescription() + ". \n");
+            System.out.println("Item " + count + ". " + System.lineSeparator()
+                    + "Id: " + item.getId() + ". " + System.lineSeparator()
+                    + "Name: " + item.getName() + ". " + System.lineSeparator()
+                    + "Description: " + item.getDescription() + ". " + System.lineSeparator());
             count++;
         }
     }
