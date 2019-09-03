@@ -7,13 +7,15 @@ class PriorityQueue {
 
     void put(Task task) {
         int count = tasks.size();
-        for (int i = 0; i < tasks.size(); i++) {
+        for (int i = task.getPriority() - 1; i < tasks.size(); i++) {
             if (task.getPriority() < tasks.get(i).getPriority()) {
                 count = i;
                 break;
             }
         }
+
         tasks.add(count, task);
+
     }
 
     Task take() {
