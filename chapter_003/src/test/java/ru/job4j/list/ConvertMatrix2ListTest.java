@@ -16,7 +16,7 @@ public class ConvertMatrix2ListTest {
                 {5, 0}
         };
         List<Integer> expect = Arrays.asList(
-                1, 2, 3 , 4, 5, 0
+                1, 2, 3, 4, 5, 0
         );
         List<Integer> result = list.toList(input);
         assertThat(result, is(expect));
