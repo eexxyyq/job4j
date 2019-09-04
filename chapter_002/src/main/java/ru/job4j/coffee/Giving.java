@@ -21,6 +21,19 @@ public class Giving implements GivingCoins {
 
     @Override
     public void changes() {
+        int[] result = forChanges(value, price);
+        if (result.length != 0) {
+            System.out.println("Your giving is: ");
+            for (int i : result) {
+                System.out.format("%d$ ", i);
+            }
+            System.out.println("\nYou're WELCOME!");
+        } else {
+            System.out.println("Pay without giving. You're WELCOME!");
+        }
+    }
+
+    private int[] forChanges(int value , int price) {
         int change = value - price;
         int count = 0;
         int[] tmp = new int[change];
@@ -35,14 +48,6 @@ public class Giving implements GivingCoins {
         }
         int[] result = new int[count];
         System.arraycopy(tmp, 0, result, 0, count);
-        if (result.length != 0) {
-            System.out.println("Your giving is: ");
-            for (int i : result) {
-                System.out.format("%d$ ", i);
-            }
-            System.out.println("\nYou're WELCOME!");
-        } else {
-            System.out.println("Pay without giving. You're WELCOME!");
-        }
+        return result;
     }
 }
