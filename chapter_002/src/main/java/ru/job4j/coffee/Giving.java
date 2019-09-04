@@ -33,7 +33,7 @@ public class Giving implements GivingCoins {
         }
     }
 
-    private int[] forChanges(int value , int price) {
+    private int[] forChanges(int value, int price) {
         int change = value - price;
         int count = 0;
         int[] tmp = new int[change];
