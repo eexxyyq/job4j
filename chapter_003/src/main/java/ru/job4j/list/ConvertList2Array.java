@@ -13,15 +13,37 @@ public class ConvertList2Array {
         }
 
         int[][] array = new int[rows][cells];
+        /*
+        Решение без foreach
+        */
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cells; j++) {
+//        for (int i = 0; i < rows; i++) {
+//            for (int j = 0; j < cells; j++) {
+//                if (tmp == list.size()) {
+//                    break;
+//                }
+//                array[i][j] = list.get(tmp++);
+//            }
+//        }
+
+
+
+        /*
+        Решение с foreach
+        */
+
+
+        for (int[] x : array) {
+            for (int i = 0; i < rows; i++) {
                 if (tmp == list.size()) {
                     break;
                 }
-                array[i][j] = list.get(tmp++);
+                x[i] = list.get(tmp);
+                tmp++;
             }
         }
+
+
         return array;
     }
 }
