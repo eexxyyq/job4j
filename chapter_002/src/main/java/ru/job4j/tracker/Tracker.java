@@ -12,7 +12,7 @@ public class Tracker {
 
     Item add(Item item) {
         item.setId(this.generateId());
-        this.items.add(items.size(), item);
+        this.items.add(item);
         return item;
     }
 
@@ -30,8 +30,7 @@ public class Tracker {
     void replace(String id, Item item) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
-                items.remove(i);
-                items.add(i, item);
+                items.set(i, item);
                 items.get(i).setId(id);
                 break;
             }
