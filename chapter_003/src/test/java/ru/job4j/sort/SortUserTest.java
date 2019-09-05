@@ -23,4 +23,30 @@ public class SortUserTest {
         assertThat(result.toArray(), is(expect.toArray()));
     }
 
+    @Test
+    public void whenSortedByLength() {
+        SortUser su = new SortUser();
+        User user1 = new User("Joooohn Cena", 6);
+        User user2 = new User("Liza", 44);
+        User user3 = new User("Petruccho", 66);
+        User user4 = new User("Sy", 22);
+        List<User> input = Arrays.asList(user1, user2, user3, user4);
+        List<User> expect = (Arrays.asList(user4, user2, user3, user1));
+        List<User> result = su.sortNameLength(input);
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenSortedByAllFields() {
+        SortUser su = new SortUser();
+        User user1 = new User("Сергей", 25);
+        User user2 = new User("Иван", 30);
+        User user3 = new User("Сергей", 20);
+        User user4 = new User("Иван", 25);
+        List<User> input = Arrays.asList(user1, user2, user3, user4);
+        List<User> expect = (Arrays.asList(user4, user2, user3, user1));
+        List<User> result = su.sortByAllFields(input);
+        assertThat(result, is(expect));
+    }
+
 }
