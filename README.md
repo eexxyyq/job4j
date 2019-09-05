@@ -1,7 +1,4 @@
-# job4j
-# Change readme.md
-Объединение зафиксированных изменений.
-# change ReadMe.md
- В курсе проводилась работа с ветками git.
-# change README.md
-Создание новой ветки с помощью IDEA
+[![Build Status](https://travis-ci.org/eexxyyq/job4j.svg?branch=master)](https://travis-ci.org/eexxyyq/job4j)
+[![codecov](https://codecov.io/gh/eexxyyq/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/eexxyyq/job4j)
+# Study project by Tikhonov Yaroslav
+working with Java course from job4j
