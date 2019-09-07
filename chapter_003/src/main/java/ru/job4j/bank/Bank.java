@@ -22,9 +22,22 @@ public class Bank {
         for (User x : map.keySet()) {
             if (passport.equals(x.getPassport())) {
                 user = x;
+                break;
             }
         }
         return user;
+    }
+
+    public Account findAccByReqAndPassport(String passport, String req) {
+        List<Account> tpm = getUserAccounts(passport);
+        Account account = null;
+        for (Account x : tpm) {
+            if (req.equals(x.getRequisites())) {
+                account = x;
+                break;
+            }
+        }
+        return account;
     }
 
     public void addAccountToUser(String passport, Account account) {
@@ -43,18 +56,12 @@ public class Bank {
 
     public boolean transferMoney(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
         boolean result = false;
-        List<Account> list1 = getUserAccounts(srcPassport);
-        List<Account> list2 = getUserAccounts(destPassport);
-        for (Account x : list1) {
-            if (x.getRequisites().equals(srcReq) && x.getValue() >= among) {
-                x.setValue(x.getValue() - among);
-                result = true;
-            }
-        }
-        for (Account x : list2) {
-            if (x.getRequisites().equals(destReq)) {
-                x.setValue(x.getValue() + among);
-            }
+        Account account = findAccByReqAndPassport(srcPassport, srcReq);
+        Account account1 = findAccByReqAndPassport(destPassport, destReq);
+        if (account != null && account1 != null && account.getValue() >= among) {
+            account.setValue(account.getValue() - among);
+            account1.setValue(account1.getValue() + among);
+            result = true;
         }
         return result;
     }
