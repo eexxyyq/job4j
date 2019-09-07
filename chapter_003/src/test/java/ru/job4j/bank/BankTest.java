@@ -22,7 +22,7 @@ public class BankTest {
         expect.add(user);
         expect.add(user2);
         Set<User> result = bank.getAllUsers();
-        assertThat(result,is(expect));
+        assertThat(result, is(expect));
     }
     @Test
     public void whenWantToDeleteUser() {
@@ -38,7 +38,7 @@ public class BankTest {
         expect.add(user1);
         expect.add(user2);
         Set<User> result = bank.getAllUsers();
-        assertThat(result,is(expect));
+        assertThat(result, is(expect));
     }
 
     @Test
@@ -55,6 +55,52 @@ public class BankTest {
         expect.add(account2);
         List<Account> result = bank.getUserAccounts(user1.getPassport());
         assertThat(result, is(expect));
+
+    }
+
+    @Test
+    public void whenWantToDeleteAccountFromUser() {
+        Bank bank = new Bank();
+        User user1 = new User("asd", "145");
+        bank.addUser(user1);
+        Account account1 = new Account(1234, "122334-123");
+        Account account2 = new Account(1234, "122334-1234555");
+        bank.addAccountToUser(user1.getPassport(), account1);
+        bank.addAccountToUser(user1.getPassport(), account2);
+        bank.deleteAccountFromUser(user1.getPassport(), account2);
+        List<Account> expect = new ArrayList<>();
+        expect.add(account1);
+        List<Account> result = bank.getUserAccounts(user1.getPassport());
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenWantToTransferBetweenDifferentUsers() {
+        Bank bank = new Bank();
+        User user1 = new User("asd", "145");
+        User user2 = new User("asd", "156321");
+        bank.addUser(user1);
+        bank.addUser(user2);
+        Account account1 = new Account(1234, "122334-123");
+        Account account2 = new Account(1234, "122334-1234555");
+        bank.addAccountToUser(user1.getPassport(), account1);
+        bank.addAccountToUser(user2.getPassport(), account2);
+        boolean result = bank.transferMoney(user1.getPassport(), account1.getRequisites(), user2.getPassport(), account2.getRequisites(), 234);
+        assertThat(result, is(true));
+
+    }
+
+    @Test
+    public void whenWantToTransferBetweenSameUsers() {
+        Bank bank = new Bank();
+        User user1 = new User("asd", "145");
+        bank.addUser(user1);
+        Account account1 = new Account(1234, "122334-123");
+        Account account2 = new Account(1234, "122334-1234555");
+        bank.addAccountToUser(user1.getPassport(), account1);
+        bank.addAccountToUser(user1.getPassport(), account2);
+        boolean result = bank.transferMoney(user1.getPassport(), account1.getRequisites(), user1.getPassport(), account2.getRequisites(), 234);
+        assertThat(result, is(true));
 
     }
 }

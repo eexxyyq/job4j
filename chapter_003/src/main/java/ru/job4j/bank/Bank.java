@@ -17,40 +17,44 @@ public class Bank {
         this.map.remove(user);
     }
 
+    public User findUser(String passport) {
+        User user = null;
+        for (User x : map.keySet()) {
+            if (passport.equals(x.getPassport())) {
+                user = x;
+            }
+        }
+        return user;
+    }
+
     public void addAccountToUser(String passport, Account account) {
-        if (!getUserAccounts(passport).contains(account)) {
-            getUserAccounts(passport).add(account);
+        if (!map.get(findUser(passport)).contains(account)) {
+            map.get(findUser(passport)).add(account);
         }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        getUserAccounts(passport).remove(account);
+        map.get(findUser(passport)).remove(account);
     }
 
-    public List<Account> getUserAccounts (String passport) {
-        return this.map.get(new User("tmp", passport));
+    public List<Account> getUserAccounts(String passport) {
+        return map.get(findUser(passport));
     }
 
     public boolean transferMoney(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
         boolean result = false;
         List<Account> list1 = getUserAccounts(srcPassport);
         List<Account> list2 = getUserAccounts(destPassport);
-        Account account1 = null;
-        Account account2 = null;
         for (Account x : list1) {
-            if (x.getRequisites().equals(srcReq)) {
-                account1 = x;
+            if (x.getRequisites().equals(srcReq) && x.getValue() >= among) {
+                x.setValue(x.getValue() - among);
+                result = true;
             }
         }
         for (Account x : list2) {
             if (x.getRequisites().equals(destReq)) {
-                account2 = x;
+                x.setValue(x.getValue() + among);
             }
-        }
-        if (account1 != null && account2 != null && account1.getValue() >= among) {
-            account1.setValue(account1.getValue() - among);
-            account2.setValue(account2.getValue() + among);
-            result = true;
         }
         return result;
     }
