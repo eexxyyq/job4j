@@ -23,7 +23,7 @@ public class OrganizationTest {
         return organization;
     }
 
-    public List<Department> listForAscendingSort(){
+    public List<Department> listForAscendingSort() {
         Department k1 = new Department("k1");
         Department sk1k1 = new Department("sk1", k1);
         Department ssk1sk1k1 = new Department("ssk1", sk1k1);
