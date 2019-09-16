@@ -1,20 +1,25 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class StartUI {
     private final Input input;
     private Tracker tracker;
     private boolean isExit = false;
+    private Consumer<String> output;
+
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
+        this.input = input;
+        this.tracker = tracker;
+        this.output = output;
+    }
+
     void setExit() {
         this.isExit = true;
     }
 
-    StartUI(Input input, Tracker tracker) {
-        this.input = input;
-        this.tracker = tracker;
-    }
-
     void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, output, this);
         menu.fillActions(this);
         int rangeLength = menu.getActionsLength();
         int[] ranges = new int[rangeLength];
@@ -35,6 +40,6 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }
