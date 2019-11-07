@@ -2,9 +2,7 @@ package ru.job4j.school;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static org.junit.Assert.assertThat;
@@ -50,6 +48,18 @@ public class SchoolTest {
                 listOfAllStudents.get(2),
                 listOfAllStudents.get(3));
         List<Student> result = school.collect(listOfAllStudents, predicate);
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenWantToConvertListToMap() {
+        SchoolMap sm = new SchoolMap();
+        List<Student> list = getList();
+        Map<String, Student> result = sm.listToMap(list);
+        Map<String, Student> expect = new HashMap<>();
+        for (Student student : list) {
+            expect.put(student.getName(), student);
+        }
         assertThat(result, is(expect));
     }
 }
