@@ -13,7 +13,7 @@ public class ConvertListOfArray2ListTest {
     public void whenThree3n2ArraysThenList() {
         ConvertList2Array list = new ConvertList2Array();
         List<int[]> input = Arrays.asList(new int[]{1, 2}, new int[]{3, 4}, new int[]{5, 6});
-        List<Integer> expect = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> expect = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> result = list.covert(input);
         assertThat(result, is(expect));
     }

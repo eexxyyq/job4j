@@ -17,8 +17,8 @@ public class SortUserTest {
         User user2 = new User("Liza", 44);
         User user3 = new User("Petr", 66);
         User user4 = new User("Symon", 22);
-        List<User> input = Arrays.asList(user1, user2, user3, user4);
-        List<User> expect = (Arrays.asList(user1, user4, user2, user3));
+        List<User> input = List.of(user1, user2, user3, user4);
+        List<User> expect = List.of(user1, user4, user2, user3);
         Set<User> result = su.sort(input);
         assertThat(result.toArray(), is(expect.toArray()));
     }
@@ -31,7 +31,7 @@ public class SortUserTest {
         User user3 = new User("Petruccho", 66);
         User user4 = new User("Sy", 22);
         List<User> input = Arrays.asList(user1, user2, user3, user4);
-        List<User> expect = (Arrays.asList(user4, user2, user3, user1));
+        List<User> expect = Arrays.asList(user4, user2, user3, user1);
         List<User> result = su.sortNameLength(input);
         assertThat(result, is(expect));
     }
@@ -44,7 +44,7 @@ public class SortUserTest {
         User user3 = new User("Сергей", 20);
         User user4 = new User("Иван", 25);
         List<User> input = Arrays.asList(user1, user2, user3, user4);
-        List<User> expect = (Arrays.asList(user4, user2, user3, user1));
+        List<User> expect = Arrays.asList(user4, user2, user3, user1);
         List<User> result = su.sortByAllFields(input);
         assertThat(result, is(expect));
     }
