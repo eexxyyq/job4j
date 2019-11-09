@@ -43,8 +43,9 @@ class Bank {
     }
 
     void addAccountToUser(String passport, Account account) {
-        if (!map.get(findUser(passport)).contains(account)) {
-            map.get(findUser(passport)).add(account);
+        User user = findUser(passport);
+        if (!map.get(user).contains(account) && user != null) {
+            map.get(user).add(account);
         }
     }
 
@@ -53,7 +54,12 @@ class Bank {
     }
 
     List<Account> getUserAccounts(String passport) {
-        return map.get(findUser(passport));
+        User user = findUser(passport);
+        List<Account> listAccounts = new ArrayList<>();
+        if (user != null) {
+            listAccounts.addAll(map.get(user));
+        }
+        return listAccounts;
     }
 
     boolean transferMoney(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
@@ -70,9 +76,13 @@ class Bank {
 
     boolean transferMoneyStreamAPI(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
         boolean result = false;
-        Account account1 = getUserAccounts(srcPassport).stream().filter(account -> account.getRequisites().equals(srcReq)).findFirst().get();
-        Account account2 = getUserAccounts(destPassport).stream().filter(account -> account.getRequisites().equals(destReq)).findFirst().get();
-        if (account1.getValue() >= among) {
+        Account account1 = getUserAccounts(srcPassport).stream()
+                .filter(account -> account.getRequisites().equals(srcReq))
+                .findFirst().orElse(null);
+        Account account2 = getUserAccounts(destPassport).stream()
+                .filter(account -> account.getRequisites().equals(destReq))
+                .findFirst().orElse(null);
+        if (account1 != null && account2 != null &&account1.getValue() >= among) {
             account1.setValue(account1.getValue() - among);
             account2.setValue(account2.getValue() + among);
             result = true;
