@@ -1,5 +1,7 @@
 package ru.job4j.school;
 
+import java.util.Objects;
+
 public class Student {
     private int score;
     private String name;

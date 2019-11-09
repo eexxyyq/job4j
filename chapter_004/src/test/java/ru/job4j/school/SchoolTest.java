@@ -62,4 +62,14 @@ public class SchoolTest {
         }
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void whenWantToSortedListByBounds() {
+        SchoolStreamAPI ssAPI = new SchoolStreamAPI();
+        List<Student> list = getList();
+        List<Student> result = ssAPI.levelOf(list, 50);
+        List<Student> expected = List.of(list.get(9), list.get(8),
+                list.get(7), list.get(6), list.get(5));
+        assertThat(result, is(expected));
+    }
 }
