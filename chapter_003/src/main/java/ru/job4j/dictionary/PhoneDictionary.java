@@ -10,7 +10,7 @@ class PhoneDictionary {
     }
 
     List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
+        var result = new ArrayList<Person>();
         for (Person person : persons) {
             if (person.getAddress().contains(key)
                     || person.getName().contains(key)

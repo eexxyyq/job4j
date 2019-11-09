@@ -6,8 +6,8 @@ class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
 
     void put(Task task) {
-        int count = tasks.size();
-        for (Task x : tasks) {
+        var count = tasks.size();
+        for (var x : tasks) {
             if (task.getPriority() < x.getPriority()) {
                 count = tasks.indexOf(x);
             }
