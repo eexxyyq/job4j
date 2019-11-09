@@ -1,23 +1,25 @@
 package ru.job4j.bank;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
 
-public class Bank {
+class Bank {
     private Map<User, List<Account>> map = new TreeMap<>();
 
-    public Set<User> getAllUsers() {
+    Set<User> getAllUsers() {
         return map.keySet();
     }
 
-    public void addUser(User user) {
+    void addUser(User user) {
         this.map.putIfAbsent(user, new ArrayList<>());
     }
 
-    public void deleteUser(User user) {
+    void deleteUser(User user) {
         this.map.remove(user);
     }
 
-    public User findUser(String passport) {
+    private User findUser(String passport) {
         User user = null;
         for (User x : map.keySet()) {
             if (passport.equals(x.getPassport())) {
@@ -28,7 +30,7 @@ public class Bank {
         return user;
     }
 
-    public Account findAccByReqAndPassport(String passport, String req) {
+    private Account findAccByReqAndPassport(String passport, String req) {
         List<Account> tpm = getUserAccounts(passport);
         Account account = null;
         for (Account x : tpm) {
@@ -40,27 +42,39 @@ public class Bank {
         return account;
     }
 
-    public void addAccountToUser(String passport, Account account) {
+    void addAccountToUser(String passport, Account account) {
         if (!map.get(findUser(passport)).contains(account)) {
             map.get(findUser(passport)).add(account);
         }
     }
 
-    public void deleteAccountFromUser(String passport, Account account) {
+    void deleteAccountFromUser(String passport, Account account) {
         map.get(findUser(passport)).remove(account);
     }
 
-    public List<Account> getUserAccounts(String passport) {
+    List<Account> getUserAccounts(String passport) {
         return map.get(findUser(passport));
     }
 
-    public boolean transferMoney(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
+    boolean transferMoney(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
         boolean result = false;
         Account account = findAccByReqAndPassport(srcPassport, srcReq);
         Account account1 = findAccByReqAndPassport(destPassport, destReq);
         if (account != null && account1 != null && account.getValue() >= among) {
             account.setValue(account.getValue() - among);
             account1.setValue(account1.getValue() + among);
+            result = true;
+        }
+        return result;
+    }
+
+    boolean transferMoneyStreamAPI(String srcPassport, String srcReq, String destPassport, String destReq, double among) {
+        boolean result = false;
+        Account account1 = getUserAccounts(srcPassport).stream().filter(account -> account.getRequisites().equals(srcReq)).findFirst().get();
+        Account account2 = getUserAccounts(destPassport).stream().filter(account -> account.getRequisites().equals(destReq)).findFirst().get();
+        if (account1.getValue() >= among) {
+            account1.setValue(account1.getValue() - among);
+            account2.setValue(account2.getValue() + among);
             result = true;
         }
         return result;
