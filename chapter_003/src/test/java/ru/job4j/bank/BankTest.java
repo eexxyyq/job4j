@@ -103,34 +103,5 @@ public class BankTest {
         assertThat(result, is(true));
 
     }
-    @Test
-    public void whenWantToTransferBetweenDifferentUsersStreamAPI() {
-        Bank bank = new Bank();
-        User user1 = new User("asd", "145");
-        User user2 = new User("asd", "156321");
-        bank.addUser(user1);
-        bank.addUser(user2);
-        Account account1 = new Account(1234, "122334-123");
-        Account account2 = new Account(1234, "122334-1234555");
-        bank.addAccountToUser(user1.getPassport(), account1);
-        bank.addAccountToUser(user2.getPassport(), account2);
-        boolean result = bank.transferMoneyStreamAPI(user1.getPassport(), account1.getRequisites(), user2.getPassport(), account2.getRequisites(), 234);
-        assertThat(result, is(true));
-
-    }
-
-    @Test
-    public void whenWantToTransferBetweenSameUsersStreamAPI() {
-        Bank bank = new Bank();
-        User user1 = new User("asd", "145");
-        bank.addUser(user1);
-        Account account1 = new Account(1234, "122334-123");
-        Account account2 = new Account(1234, "122334-1234555");
-        bank.addAccountToUser(user1.getPassport(), account1);
-        bank.addAccountToUser(user1.getPassport(), account2);
-        boolean result = bank.transferMoneyStreamAPI(user1.getPassport(), account1.getRequisites(), user1.getPassport(), account2.getRequisites(), 234);
-        assertThat(result, is(true));
-
-    }
 
 }
