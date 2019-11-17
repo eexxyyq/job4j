@@ -8,11 +8,17 @@ public class SimpleArray<T> implements Iterable {
     private Object[] arr;
     private int index = 0;
 
-    SimpleArray(int size) {
-        this.arr = new Object[size];
+    SimpleArray() {
+        this.arr = new Object[10];
+    }
+    private void checkArray() {
+        if (index == this.arr.length) {
+            this.arr = Arrays.copyOf(this.arr, this.arr.length * 2);
+        }
     }
 
     void add(T model) {
+        checkArray();
         if (index == arr.length) {
             System.out.println("Array is fully");
         } else {
@@ -33,6 +39,7 @@ public class SimpleArray<T> implements Iterable {
         this.arr[this.arr.length - 1] = null;
         this.index--;
     }
+
 
     Object get(int index) {
         return this.arr[index];

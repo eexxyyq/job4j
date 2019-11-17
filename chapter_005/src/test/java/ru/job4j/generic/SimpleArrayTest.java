@@ -10,7 +10,7 @@ public class SimpleArrayTest {
     private SimpleArray<Integer> simpleArray;
     @Before
     public void init() {
-        simpleArray = new SimpleArray<>(5);
+        simpleArray = new SimpleArray<>();
     }
     @Test
     public void whenAddAnThreeObject() {
