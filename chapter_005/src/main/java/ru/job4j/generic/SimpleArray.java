@@ -18,11 +18,12 @@ public class SimpleArray<T> implements Iterable {
         } else {
             this.arr[index++] = model;
         }
-
     }
 
     void set(int pos, T model) {
-        this.arr[pos] = model;
+        if (this.arr[pos] != null) {
+            this.arr[pos] = model;
+        }
     }
 
     void remove(int index) {
@@ -30,6 +31,7 @@ public class SimpleArray<T> implements Iterable {
             System.arraycopy(this.arr, index + 1, this.arr, index, this.arr.length - 1 - index);
         }
         this.arr[this.arr.length - 1] = null;
+        this.index--;
     }
 
     Object get(int index) {
@@ -43,7 +45,7 @@ public class SimpleArray<T> implements Iterable {
             @Override
             public boolean hasNext() {
                 boolean result = false;
-                if (count < arr.length && arr[count] != null) {
+                if (count < index && arr[count] != null) {
                     result = true;
                 }
                 return result;
