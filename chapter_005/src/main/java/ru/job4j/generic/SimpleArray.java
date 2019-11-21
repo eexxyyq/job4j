@@ -40,7 +40,6 @@ public class SimpleArray<T> implements Iterable {
         this.index--;
     }
 
-
     Object get(int index) {
         return this.arr[index];
     }
@@ -52,7 +51,7 @@ public class SimpleArray<T> implements Iterable {
             @Override
             public boolean hasNext() {
                 boolean result = false;
-                if (count < index && arr[count] != null) {
+                if (count < index) {
                     result = true;
                 }
                 return result;

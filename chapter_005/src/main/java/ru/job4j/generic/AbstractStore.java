@@ -1,5 +1,7 @@
 package ru.job4j.generic;
 
+import java.util.Iterator;
+
 public class AbstractStore<T extends Base> implements Store<T> {
     private SimpleArray<T> simpleArray;
 
@@ -14,13 +16,17 @@ public class AbstractStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        int pos = Integer.parseInt(id);
+        int count = 0;
         boolean result = false;
-        if (simpleArray.get(pos) != null) {
-            simpleArray.set(pos, model);
-            result = true;
-        }
+        for (Iterator<T> it = simpleArray.iterator(); it.hasNext(); ) {
+            count++;
+            if (it.next().getId().equals(id)) {
+                simpleArray.set(count, model);
+                result = true;
+                break;
+            }
 
+        }
         return result;
     }
 
