@@ -12,33 +12,37 @@ public class AbstractStore<T extends Base> implements Store<T> {
     public void add(T model) {
         simpleArray.add(model);
     }
+    private int getIndex(String id) {
+        int index = -1;
+        int count = 0;
+        for (T x: (Iterable<T>) simpleArray) {
+            count++;
+            if (x.getId().equals(id)) {
+                index = count;
+                break;
+            }
+        }
+        return index;
+    }
 
     @Override
     public boolean replace(String id, T model) {
-        int count = 0;
         boolean result = false;
-        for (T o : (Iterable<T>) simpleArray) {
-            count++;
-            if (o.getId().equals(id)) {
-                simpleArray.set(count, model);
-                result = true;
-                break;
-            }
+        int index = getIndex(id);
+        if (index != -1) {
+            simpleArray.set(index, model);
+            result = true;
         }
         return result;
     }
 
     @Override
     public boolean delete(String id) {
-        int count = 0;
         boolean result = false;
-        for (T o : (Iterable<T>) simpleArray) {
-            count++;
-            if (o.getId().equals(id)) {
-                simpleArray.remove(count);
-                result = true;
-                break;
-            }
+        int index = getIndex(id);
+        if (index != -1) {
+            simpleArray.remove(index);
+            result = true;
         }
         return result;
     }
@@ -46,13 +50,9 @@ public class AbstractStore<T extends Base> implements Store<T> {
     @Override
     public T findById(String id) {
         T res = null;
-        int count = 0;
-        for (T o : (Iterable<T>) simpleArray) {
-            count++;
-            if (o.getId().equals(id)) {
-                res = (T) simpleArray.get(count);
-                break;
-            }
+        int index = getIndex(id);
+        if (index != -1) {
+            res = (T) simpleArray.get(index);
         }
         return res;
     }
