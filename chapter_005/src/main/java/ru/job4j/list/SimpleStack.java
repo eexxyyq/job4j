@@ -8,7 +8,7 @@ public class SimpleStack<T> {
     }
 
     T poll() {
-        T result = list.get(list.getSize() - 1);
+        T result = list.get(0);
         list.deleteForStack();
         return result;
     }

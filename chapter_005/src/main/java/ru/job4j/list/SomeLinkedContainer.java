@@ -32,6 +32,7 @@ public class SomeLinkedContainer<E> implements Iterable<E> {
     }
 
     void deleteForStack() {
+        this.node = this.node.next;
         size--;
     }
 
