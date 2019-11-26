@@ -14,12 +14,12 @@ class SimpleArrayList<E> {
     /**
      * Реализовать метод удаления первого элемент в списке.
      */
-    boolean delete() {
-        boolean result = false;
+    E delete() {
+        E result = null;
         if (this.first != null) {
+            result = (E) this.first;
             this.first = this.first.next;
             this.size--;
-            result = true;
         }
         return result;
     }
