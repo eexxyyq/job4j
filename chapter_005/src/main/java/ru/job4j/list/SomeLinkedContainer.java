@@ -59,7 +59,8 @@ public class SomeLinkedContainer<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return get(indexIter++);
+                indexIter++;
+                return (E) node.next;
             }
         };
     }
