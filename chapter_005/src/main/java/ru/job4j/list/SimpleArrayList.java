@@ -21,6 +21,9 @@ class SimpleArrayList<E> {
             this.first = this.first.next;
             this.size--;
         }
+        if (result == null) {
+            throw new IllegalArgumentException();
+        }
         return result;
     }
 
