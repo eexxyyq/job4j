@@ -6,12 +6,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SomeContainer<E> implements Iterable<E>{
-    private Object[] container;
+    private Object[] container = new Object[10];
     private int index = 0;
     private int countMod = 0;
-    SomeContainer() {
-        this.container = new Object[10];
-    }
 
     private void getNewSize() {
         if (index == this.container.length) {
@@ -32,6 +29,10 @@ public class SomeContainer<E> implements Iterable<E>{
             result = (E) this.container[index];
         }
         return result;
+    }
+
+    public int getSize() {
+        return this.index;
     }
 
     @Override
