@@ -9,7 +9,19 @@ public class SimpleStack<T> {
 
     T poll() {
         T result = list.get(0);
-        list.deleteForStack();
+        list.deleteFirst();
+        return result;
+    }
+
+    int getSize() {
+        return list.getSize();
+    }
+
+    boolean isEmpty() {
+        boolean result = false;
+        if (list.getSize() == 0) {
+            result = true;
+        }
         return result;
     }
 }
