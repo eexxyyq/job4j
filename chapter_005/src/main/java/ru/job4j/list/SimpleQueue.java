@@ -16,7 +16,7 @@ public class SimpleQueue<T> {
      */
     public T poll() {
         if (second.isEmpty()) {
-            while(!first.isEmpty()) {
+            while (!first.isEmpty()) {
                 second.push(first.poll());
             }
         }

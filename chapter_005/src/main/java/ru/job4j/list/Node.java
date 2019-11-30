@@ -12,7 +12,7 @@ public class Node<T> {
         boolean result = false;
         Node one = first;
         Node two = first;
-        while(two != null || two.next != null) {
+        while (two != null || two.next != null) {
             one = one.next;
             two = two.next.next;
             if (one == two) {

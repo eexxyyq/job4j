@@ -28,7 +28,9 @@ public class SomeLinkedContainer<E> implements Iterable<E> {
     private static class Node<E> {
         E data;
         Node<E> next;
-        Node (E data) {this.data = data;}
+        Node(E data) {
+            this.data = data;
+        }
     }
 
     void deleteFirst() {

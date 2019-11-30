@@ -5,7 +5,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SomeContainer<E> implements Iterable<E>{
+public class SomeContainer<E> implements Iterable<E> {
     private Object[] container = new Object[10];
     private int index = 0;
     private int countMod = 0;
