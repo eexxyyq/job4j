@@ -15,15 +15,13 @@ class SimpleArrayList<E> {
      * Реализовать метод удаления первого элемент в списке.
      */
     E delete() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("We have nothing into this collection");
+        }
         E result = null;
-        if (this.first != null) {
-            result = (E) this.first;
-            this.first = this.first.next;
-            this.size--;
-        }
-        if (result == null) {
-            throw new IllegalArgumentException();
-        }
+        result = (E) this.first;
+        this.first = this.first.next;
+        this.size--;
         return result;
     }
 
