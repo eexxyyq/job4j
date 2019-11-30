@@ -31,19 +31,6 @@ public class SimpleSet<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            @Override
-            public boolean hasNext() {
-                return index < getSize();
-            }
-
-            @Override
-            public T next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                return set.get(index++);
-            }
-        };
+        return set.iterator();
     }
 }
