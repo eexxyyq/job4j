@@ -18,10 +18,6 @@ public class SimpleStack<T> {
     }
 
     boolean isEmpty() {
-        boolean result = false;
-        if (list.getSize() == 0) {
-            result = true;
-        }
-        return result;
+        return getSize() == 0;
     }
 }

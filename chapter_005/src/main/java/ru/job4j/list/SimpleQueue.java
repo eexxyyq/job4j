@@ -4,17 +4,9 @@ public class SimpleQueue<T> {
     private SimpleStack<T> first = new SimpleStack<T>();
     private SimpleStack<T> second = new SimpleStack<T>();
 
-    /**
-     * Метод проверяет заполнен ли второй стек,
-     * если нет - то добавляет новый элемент в него, если полон - то в первый
-     * @param data
-     */
+
     public void push(T data) {
-        if (second.getSize() < 10) {
-            second.push(data);
-        } else {
-            first.push(data);
-        }
+        first.push(data);
     }
 
     /**
@@ -23,10 +15,11 @@ public class SimpleQueue<T> {
      * @return
      */
     public T poll() {
-        T result = second.poll();
-        if (!first.isEmpty()) {
-            second.push(first.poll());
+        if (second.isEmpty()) {
+            while(!first.isEmpty()) {
+                second.push(first.poll());
+            }
         }
-        return result;
+        return second.poll();
     }
 }
