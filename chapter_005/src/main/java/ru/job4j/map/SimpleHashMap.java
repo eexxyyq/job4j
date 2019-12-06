@@ -2,7 +2,7 @@ package ru.job4j.map;
 
 import java.util.*;
 
-public class SimpleHashMap<K, V> implements Iterable<Pair<K, V>>{
+public class SimpleHashMap<K, V> implements Iterable<Pair<K, V>> {
     private int bucketValue = 0;
     @SuppressWarnings("unchecked")
     private Bucket<K, V>[] map = new Bucket[16];

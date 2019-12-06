@@ -17,7 +17,9 @@ public class Bucket<K, V> {
     }
 
     private void makeSolidBucket(int start) {
-        if (size - start >= 0) System.arraycopy(values, start + 1, values, start, size - start);
+        if (size - start >= 0) {
+            System.arraycopy(values, start + 1, values, start, size - start);
+        }
     }
 
     public V get(K key) {
