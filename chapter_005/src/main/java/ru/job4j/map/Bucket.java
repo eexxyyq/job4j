@@ -16,7 +16,7 @@ public class Bucket<K, V> {
         }
     }
 
-    private void makeSolidMap(int start) {
+    private void makeSolidBucket(int start) {
         if (size - start >= 0) System.arraycopy(values, start + 1, values, start, size - start);
     }
 
@@ -75,7 +75,7 @@ public class Bucket<K, V> {
                         values[i] = null;
                         size--;
                         result = true;
-                        makeSolidMap(i);
+                        makeSolidBucket(i);
                         break;
                     }
                 }
