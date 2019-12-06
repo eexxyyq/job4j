@@ -1,12 +1,8 @@
 package ru.job4j.tree;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.Queue;
+import java.util.*;
 
 public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private final Node<E> node;
-    private int modCount;
 
     public Tree(E value) {
         this.node = new Node<>(value);
@@ -15,13 +11,20 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean result = false;
-        if (this.findBy(parent).isPresent()) {
-            this.findBy(parent).ifPresent(
-                    eNode -> node.add(new Node<>(child))
-            );
-            result = true;
-            this.modCount++;
-
+        Optional<Node<E>> checkRepeat = findBy(parent);
+        if (checkRepeat.isPresent()) {
+            Node<E> parentEl = checkRepeat.get();
+            boolean repeat = false;
+            for (Node<E> node : parentEl.leaves()) {
+                if (node.eqValue(child)) {
+                    repeat = true;
+                    break;
+                }
+            }
+            if (!repeat) {
+                parentEl.add(new Node<>(child));
+                result = true;
+            }
         }
         return result;
     }
@@ -46,15 +49,20 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
+            Queue<Node<E>> elements = new LinkedList<>(Collections.singletonList(node));
+
             @Override
             public boolean hasNext() {
-                return node.leaves().iterator().hasNext();
+                return elements.iterator().hasNext();
             }
 
             @Override
             public E next() {
-                return node.leaves().iterator().next();
+                Node<E> res = this.elements.poll();
+                assert res != null;
+                elements.addAll(res.leaves());
+                return res.getValue();
             }
         };
     }
