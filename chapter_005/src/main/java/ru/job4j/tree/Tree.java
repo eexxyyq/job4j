@@ -28,6 +28,28 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
         return result;
     }
+    public boolean isBinary() {
+        return checkBinary(this.node);
+    }
+
+    private boolean checkBinary(Node<E> root) {
+        boolean result = true;
+        if (root != null) {
+            if (root.leaves().size() > 2) {
+                result = false;
+            } else {
+                for (Node<E> node : root.leaves()) {
+                    result = checkBinary(node);
+                    if (!result) {
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+
 
     @Override
     public Optional<Node<E>> findBy(E value) {
