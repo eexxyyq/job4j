@@ -11,45 +11,30 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean result = false;
-        Optional<Node<E>> checkRepeat = findBy(parent);
-        if (checkRepeat.isPresent()) {
-            Node<E> parentEl = checkRepeat.get();
-            boolean repeat = false;
-            for (Node<E> node : parentEl.leaves()) {
-                if (node.eqValue(child)) {
-                    repeat = true;
-                    break;
-                }
-            }
-            if (!repeat) {
-                parentEl.add(new Node<>(child));
-                result = true;
-            }
+        Optional<Node<E>> newChild = findBy(child);
+        if (!newChild.isPresent()) {
+            Optional<Node<E>> parentEl = findBy(parent);
+            parentEl.ifPresent(eNode -> eNode.add(new Node<>(child)));
+            result = true;
         }
         return result;
     }
     public boolean isBinary() {
-        return checkBinary(this.node);
-    }
-
-    private boolean checkBinary(Node<E> root) {
-        boolean result = true;
-        if (root != null) {
-            if (root.leaves().size() > 2) {
-                result = false;
-            } else {
-                for (Node<E> node : root.leaves()) {
-                    result = checkBinary(node);
-                    if (!result) {
-                        break;
-                    }
-                }
+        boolean res = true;
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(node);
+        while (!queue.isEmpty()) {
+            Node<E> el = queue.poll();
+            if (el.leaves().size() > 2) {
+                res = false;
+                break;
+            }
+            for (Node<E> childEl : el.leaves()) {
+                queue.offer(childEl);
             }
         }
-        return result;
+        return res;
     }
-
-
 
     @Override
     public Optional<Node<E>> findBy(E value) {
@@ -76,7 +61,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
             @Override
             public boolean hasNext() {
-                return elements.iterator().hasNext();
+                return elements.isEmpty();
             }
 
             @Override
