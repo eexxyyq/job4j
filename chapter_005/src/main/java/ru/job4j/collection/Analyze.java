@@ -11,8 +11,7 @@ public class Analyze {
         int countRepeat = 0;
         for (User user : previous) {
             for (User user1 : current) {
-                if ((user.getId() == user1.getId() && user.getName().equals(user1.getName())) ||
-                        (user.getId() == user1.getId() && !user.getName().equals(user1.getName()))) {
+                if (user.getId() == user1.getId()) {
                     countRepeat++;
                 }
                 if (user.getId() == user1.getId() && !user.getName().equals(user1.getName())) {
@@ -30,8 +29,8 @@ public class Analyze {
     }
 
     public static class User {
-        int id;
-        String name;
+        private int id;
+        private String name;
 
         public User(int id, String name) {
             this.id = id;
@@ -52,6 +51,12 @@ public class Analyze {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "id = " + id
+                    + "\n" + "name = " + name;
         }
     }
 
