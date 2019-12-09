@@ -1,31 +1,28 @@
 package ru.job4j.collection;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Analyze {
     public Info diff(List<User> previous, List<User> current) {
-        int addedNewUsers = 0;
-        int changedUsers = 0;
-        int deletedUser = 0;
-        int countRepeat = 0;
-        for (User user : previous) {
-            for (User user1 : current) {
-                if (user.getId() == user1.getId()) {
-                    countRepeat++;
-                }
-                if (user.getId() == user1.getId() && !user.getName().equals(user1.getName())) {
-                    changedUsers++;
-                }
+        Info result = new Info();
+        Map<Integer, User> users = previous.stream().collect(Collectors.toMap(
+                User::getId,
+                Function.identity()
+        ));
+        current.forEach(user -> {
+            User temp = users.remove(user.getId());
+            if (temp == null) {
+                result.addedNewUsers++;
+            } else if (!temp.getName().equals(user.getName())) {
+                result.changedUsers++;
             }
-        }
-        if (current.size() - countRepeat > 0) {
-            addedNewUsers = current.size() - countRepeat;
-        }
-        if (previous.size() - countRepeat > 0) {
-            deletedUser = previous.size() - countRepeat;
-        }
-        return new Info(addedNewUsers, changedUsers, deletedUser);
+        });
+        result.deletedUser = users.size();
+        return result;
     }
 
     public static class User {
@@ -64,6 +61,9 @@ public class Analyze {
         int addedNewUsers;
         int changedUsers;
         int deletedUser;
+
+        public Info() {
+        }
 
         public Info(int addedNewUsers, int changedUsers, int deletedUser) {
             this.addedNewUsers = addedNewUsers;
