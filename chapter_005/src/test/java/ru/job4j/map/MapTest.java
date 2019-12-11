@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.map;
 import org.junit.Test;
 import ru.job4j.map.Pair;
 import ru.job4j.map.SimpleHashMap;
