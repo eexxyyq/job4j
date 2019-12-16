@@ -80,9 +80,9 @@ public class Analyze {
                 return false;
             }
             Info info = (Info) o;
-            return addedNewUsers == info.addedNewUsers &&
-                    changedUsers == info.changedUsers &&
-                    deletedUser == info.deletedUser;
+            return addedNewUsers == info.addedNewUsers
+                    && changedUsers == info.changedUsers
+                    && deletedUser == info.deletedUser;
         }
 
         @Override
