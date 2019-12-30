@@ -8,9 +8,7 @@ public class Search {
         List<File> result = new ArrayList<>();
         Queue<File> queue = new LinkedList<>();
         File path = new File(parent);
-        if (path.isDirectory()) {
-            queue.add(path);
-        }
+        queue.add(path);
         while (queue.size() > 0) {
             File[] fileList = queue.poll().listFiles();
             assert fileList != null;
