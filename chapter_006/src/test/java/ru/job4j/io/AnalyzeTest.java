@@ -13,8 +13,8 @@ public class AnalyzeTest {
     @Test
     public void analyzeTest() throws IOException {
         Analyze analyze = new Analyze();
-        String source = "B:\\Yaroslav\\projects\\job4j\\chapter_006\\data\\server.log";
-        String target = "B:\\Yaroslav\\projects\\job4j\\chapter_006\\data\\target.txt";
+        String source = "data/server.log";
+        String target = "data/target.txt";
         analyze.unavailable(source, target);
         String expected = "10:57:01 - 10:59:01";
         String result;

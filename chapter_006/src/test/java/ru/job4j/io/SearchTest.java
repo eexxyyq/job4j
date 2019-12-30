@@ -14,7 +14,7 @@ public class SearchTest {
         List<String> list = new ArrayList<>();
         list.add("xml");
         list.add("txt");
-        List<File> resultList = search.files("/Users/elizavetastrelkova/IdeaProjects/TempDir", list);
+        List<File> resultList = search.files("../../../TempDir/", list);
         List<String> result = new ArrayList<>();
         for (File f : resultList) {
             result.add(f.getName());
