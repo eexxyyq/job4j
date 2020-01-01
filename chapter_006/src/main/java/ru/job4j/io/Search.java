@@ -16,14 +16,20 @@ public class Search {
                 if (f.isDirectory()) {
                     queue.add(f);
                 } else {
-                    for (String s : exist) {
-                        if (f.getName().endsWith("." + s)) {
-                            result.add(f);
-                        }
-                    }
+                    result.addAll(checkExts(exist, f));
                 }
             }
         }
         return result;
+    }
+
+    private List<File> checkExts(List<String> exist, File f) {
+        List<File> res = new ArrayList<>();
+        for (String s : exist) {
+            if (f.getName().endsWith("." + s)) {
+                res.add(f);
+            }
+        }
+        return res;
     }
 }
