@@ -23,11 +23,13 @@ public class Post {
                     tmpSet.add(u);
                 }
             }
-            User mainUser = tmpSet.iterator().next();
-            for (User user : tmpSet) {
-                mainUser.addNewEmailFromSet(user.getListOfEmails());
-                base.remove(user);
-                base.add(mainUser);
+            if (tmpSet.size() > 1) {
+                User mainUser = tmpSet.iterator().next();
+                for (User user : tmpSet) {
+                    mainUser.addNewEmailFromSet(user.getListOfEmails());
+                    base.remove(user);
+                    base.add(mainUser);
+                }
             }
         }
     }
