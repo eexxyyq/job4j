@@ -14,29 +14,21 @@ public class Post {
     }
 
     public void rebase() {
-        HashMap<String, List<User>> map = new HashMap<>();
-        Set<User> set = new HashSet<>();
-        base.forEach(user -> {
-            user.getListOfEmails().forEach(email -> {
-                map.put(email, new ArrayList<>());
-            });
-        });
-        map.keySet().forEach(email -> {
-            base.forEach(user -> {
-                if (user.getListOfEmails().contains(email)) {
-                    map.get(email).add(user);
-                }
-            });
-        });
-        map.keySet().forEach(email -> {
-            if (map.get(email).size() > 1) {
-                for (int i = 1; i < map.get(email).size(); i++) {
-                    map.get(email).get(0).addNewEmailFromSet(map.get(email).get(i).getListOfEmails());
+        Set<String> emails = new HashSet<>();
+        base.forEach(user -> emails.addAll(user.getListOfEmails()));
+        for (String e : emails) {
+            Set<User> tmpSet = new HashSet<>();
+            for (User u : base) {
+                if (u.getListOfEmails().contains(e)) {
+                    tmpSet.add(u);
                 }
             }
-            set.add(map.get(email).get(0));
-        });
-        this.base = set;
+            User mainUser = tmpSet.iterator().next();
+            for (User user : tmpSet) {
+                mainUser.addNewEmailFromSet(user.getListOfEmails());
+                base.remove(user);
+                base.add(mainUser);
+            }
+        }
     }
-
 }
