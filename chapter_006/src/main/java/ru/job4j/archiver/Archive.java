@@ -41,7 +41,7 @@ public class Archive {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (File file : sources) {
                 zip.putNextEntry(new ZipEntry(file.getPath()));
-                try(BufferedInputStream out = new BufferedInputStream(new FileInputStream(file.getPath()))) {
+                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(file.getPath()))) {
                     zip.write(out.readAllBytes());
                 }
             }
