@@ -14,9 +14,7 @@ class PriorityQueue {
         }
         tasks.add(count, task);
     }
-
     Task take() {
         return this.tasks.poll();
     }
-
 }
